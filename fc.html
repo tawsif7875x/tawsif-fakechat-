@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shahadat's Fakechat API</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .emoji {
+            width: 1em;
+            height: 1em;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="message">
+            <div class="name">{{name}}</div>
+            <div class="text">{{text}}</div>
+            <img id="profile-image" class="profile" src="{{profileImageUrl}}" alt="Profile Image">
+        </div>
+    </div>
+
+    <script>
+        // Load emoji JSON
+        fetch('emojis.json')
+            .then(response => response.json())
+            .then(emojis => {
+                const urlParams = new URLSearchParams(window.location.search);
+                const profileImageUrl = urlParams.get('profileImageUrl') || 'https://i.postimg.cc/Wb8rDFNP/profile.jpg';
+                const name = urlParams.get('name') || 'Shahadat Hossain';
+                let text = urlParams.get('text') || `Welcome to Shahadat's Fakechat API<br><br>How to use:<br>GET/?profileImageUrl={the_image_url_like_imgbb}&name={the_name}&text={the_text_or_the_content}<br><br>Example:<br>GET/?profileImageUrl=https://i.ibb.co/c62q14D/image.jpg&name=Nino Nakano&text=Hello senpai.<br><br>Note: You can use "<.br.>" to break the line (remove the dots)<br><br>Thanks for using Shahadat's API<br>Shahadat's Facebook profile: https://facebook.com/shahadat20066`;                // Replace emoji codes with actual emoji;
+                
+                // Replace emojis in the text
+                text = text.replace(/([\u{1F600}-\u{1F64F}]|[\u{1F300}-\u{1F5FF}]|[\u{1F680}-\u{1F6FF}]|[\u{1F700}-\u{1F77F}]|[\u{1F780}-\u{1F7FF}]|[\u{1F800}-\u{1F8FF}]|[\u{1F900}-\u{1F9FF}]|[\u{1FA00}-\u{1FA6F}]|[\u{1FA70}-\u{1FAFF}]|[\u{2600}-\u{26FF}]|[\u{2700}-\u{27BF}])/gu, match => {
+                    const emojiCode = emojis[match];
+                    if (emojiCode) {
+                        return `<img src="https://raw.githubusercontent.com/shahadat20066/fb-emojis/master/png/${emojiCode}.png" alt="${match}" class="emoji">`;
+                    }
+                    return match;
+                });
+
+                // Update DOM elements with dynamic values
+                document.querySelector('.name').textContent = name;
+                document.querySelector('.text').innerHTML = text;
+                document.getElementById('profile-image').src = profileImageUrl;
+            });
+    </script>
+</body>
+</html>
