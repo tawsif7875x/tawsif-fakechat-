@@ -1,0 +1,62 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Change to flex-start to allow scrolling */
+    height: 100vh;
+    background-color: #000000;
+    margin: 0;
+    overflow: auto; /* Prevent double scrollbars */q
+}
+
+.chat-container {
+    background-image: url('https://i.postimg.cc/9MyCzC9X/background.jpg');
+    background-size: 1920px 2712px; /* Ensure the background image maintains its original size */
+    background-repeat: repeat; /* Repeat the background image */
+    border-radius: 8px;
+    padding: 100px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%; /* Adjust to fit the viewport */
+    max-width: 4000px; /* Limit maximum width */
+    height: auto; /* Adjust height considering padding */
+    font-family: Arial, sans-serif;
+    position: relative;
+    overflow-y: auto; /* Allow vertical scrolling */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    box-sizing: border-box; /* Include padding in height calculation */
+}
+
+.message {
+    background-color: #000000;
+    padding: 45px 65px;
+    border-radius: 90px;
+    position: relative;
+    color: white;
+    font-size: 80px;
+    max-width: 1500px;
+    word-wrap: break-word;
+    margin-left: 150px;
+}
+
+.name {
+    position: absolute;
+    top: -85px;
+    left: 60px;
+    font-size: 60px;
+    color: white;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.profile {
+    border-radius: 50%;
+    width: 155px;
+    height: 155px;
+    position: absolute;
+    bottom: 0;
+    left: -215px;
+    border: 2px solid #2c2f33;
+}
