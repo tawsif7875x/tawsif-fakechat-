@@ -1,0 +1,19 @@
+const express = require('express');
+const app = express();
+const port = process.env.PORT || 3000; // Use environment variable for port or default to 3000
+
+app.get('/fakechat', (req, res) => {
+  const profileImageUrl = req.query.profileImageUrl || 'https://i.postimg.cc/Wb8rDFNP/profile.jpg';
+  const name = req.query.name || 'Shahadat Hossain';
+  const text = req.query.text || `Welcome to Shahadat's Fakechat API<br><br>How to use:<br>GET/?profileImageUrl={the_image_url_like_imgbb}&name={the_name}&text={the_text_or_the_content}<br><br>Example:<br>GET/?profileImageUrl=https://i.ibb.co/c62q14D/image.jpg&name=Nino Nakano&text=Hello senpai.<br><br>Note: You can use "<.br.>" to break the line (remove the dots)<br><br>Thanks for using Shahadat's API<br>Shahadat's Facebook profile: https://facebook.com/shahadat20066`;
+  
+  res.send({
+    profileImageUrl,
+    name,
+    text
+  });
+});
+
+app.listen(port, () => {
+  console.log(`Server listening on port ${port}`);
+});
